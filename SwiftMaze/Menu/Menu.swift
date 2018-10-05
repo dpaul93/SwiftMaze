@@ -24,12 +24,10 @@ protocol Menu {
 private class BaseMenu: Menu {
     weak var delegate: MenuDelegate?
     
+    let builder: MenuBuilder
     var mazeDimensions: Int = 0 {
-        didSet {
-            counterLabel.text = "\(mazeDimensions)"
-        }
+        didSet { counterLabel.text = "\(mazeDimensions)" }
     }
-    private let builder: MenuBuilder
 
     var background: SKSpriteNode
     var counterLabel: SKLabelNode!
@@ -46,7 +44,7 @@ private class BaseMenu: Menu {
     
     func initControls() {
         counterLabel = builder.buildCounterLabel()
-        mazeDimensions = 0
+        mazeDimensions = 5
         background.addChild(counterLabel)
         decreaseButton = builder.buildDecreaseButton()
         increaseButton = builder.buildIncreaseButton()
